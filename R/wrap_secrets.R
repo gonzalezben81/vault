@@ -1,4 +1,4 @@
-#get_approle_token
+#wrap_secrets
 #
 # You can learn more about package authoring with RStudio at:
 #
@@ -11,7 +11,9 @@
 #   Test Package:              'Ctrl + Shift + T'
 #' Vault: Gets the approle token from Vault.
 #'
-#' This function gets the approle token from the vault instance. You can then utilize the approle token to query data from vault.
+#' This function wraps secrets via the wrap endpoint in Vault. The function returns a single use token that can be utilized once to retrieve the secrets.
+#' [Vault Wrap Token API](https://developer.hashicorp.com/vault/api-docs/system/wrapping-wrap)
+#' [Vault Wrapping Overview](https://developer.hashicorp.com/vault/docs/concepts/response-wrapping)
 #' @param url URL of the Hashicorp Vault instance.
 #' @param token The token used to wrap the secrets in Vault via the wrapping utility.
 #' @param secrets_to_wrap The secrets you want to wrap via the Vault wrapping utility.
