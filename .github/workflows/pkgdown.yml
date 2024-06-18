@@ -18,9 +18,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages('remotes')
+          install.packages(remotes)
           remotes::install_deps(dependencies = TRUE)
-          install.packages('pkgdown')
+          install.packages(pkgdown)
 
       - name: Build pkgdown site
         run: |
