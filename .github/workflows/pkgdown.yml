@@ -18,13 +18,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages(remotes)
-          remotes::install_deps(dependencies = TRUE)
-          install.packages(pkgdown)
+          R -e 'install.packages("remotes")'
+          R -e 'remotes::install_deps(dependencies = TRUE)'
+          R -e 'install.packages("pkgdown")'
 
       - name: Build pkgdown site
         run: |
-          pkgdown::build_site()
+          R -e 'pkgdown::build_site()'
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.6
