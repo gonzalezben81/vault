@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/404.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/index.html</loc>
   </url>
   <url>
-    <loc>/reference/config_aws_root_creds.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/config_aws_root_creds.html</loc>
   </url>
   <url>
-    <loc>/reference/get_approle_token.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/get_approle_token.html</loc>
   </url>
   <url>
-    <loc>/reference/get_aws_creds.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/get_aws_creds.html</loc>
   </url>
   <url>
-    <loc>/reference/get_aws_role_info.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/get_aws_role_info.html</loc>
   </url>
   <url>
-    <loc>/reference/get_aws_sts.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/get_aws_sts.html</loc>
   </url>
   <url>
-    <loc>/reference/get_github_token.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/get_github_token.html</loc>
   </url>
   <url>
-    <loc>/reference/get_role_id.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/get_role_id.html</loc>
   </url>
   <url>
-    <loc>/reference/get_secret_id.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/get_secret_id.html</loc>
   </url>
   <url>
-    <loc>/reference/get_user_token.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/get_user_token.html</loc>
   </url>
   <url>
-    <loc>/reference/get_vault_data.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/get_vault_data.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/list_aws_roles.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/list_aws_roles.html</loc>
   </url>
   <url>
-    <loc>/reference/post_vault_data.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/post_vault_data.html</loc>
   </url>
   <url>
-    <loc>/reference/wrap_secrets.html</loc>
+    <loc>https://gonzalezben81.github.io/vault/reference/wrap_secrets.html</loc>
   </url>
 </urlset>
