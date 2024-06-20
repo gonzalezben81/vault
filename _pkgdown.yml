@@ -13,8 +13,17 @@ template:
     btn-border-radius: 0.25rem
     danger: "#A6081A"
   includes:
-    in_header:
+    in_header: |
       <script defer data-domain="pkgdown.r-lib.org,all.tidyverse.org" src="https://plausible.io/js/plausible.js"></script>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6MW51TT6K"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', 'G-S6MW51TT6K');
+      </script>         
       
 reference:
 - title: Vault - Working with secrets
