@@ -15,3 +15,28 @@ template:
   includes:
     in_header:
       <script defer data-domain="pkgdown.r-lib.org,all.tidyverse.org" src="https://plausible.io/js/plausible.js"></script>
+      
+reference:
+- title: Vault - Working with secrets
+  desc: Retrieving and storing secrets in vault
+  contents:
+  - get_vault_data
+  - post_vault_data
+  - wrap_secrets
+- title: Vault - Working with approles and tokens
+  desc: Approles and tokens
+  contents:  
+  - get_approle_token
+  - get_role_id
+  - get_user_token
+  - get_role_id
+  - get_secret_id  
+- title: AWS
+  desc: Interface with AWS
+- contents:
+  - matches("aws")
+- title: GitHub  
+  desc: Interface with GitHub
+- contents:  
+  - matches("github")
+

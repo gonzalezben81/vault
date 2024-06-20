@@ -44,7 +44,7 @@ wrap_secrets <- function(url=NULL,token=NULL,secrets_to_wrap=NULL,ttl='30m'){
   complete_url<- paste0(url,':8200/v1/sys/wrapping/wrap')
   print(complete_url)
   ###Posts the data for a return of the wrap token to unwrap the secrets from Vault
-  res <- httr::POST(complete_url,httr::add_headers('X-Vault-Token' = token,'X-Vault-Wrap-TTL'=ttl), body = data_to_wrap, encode = "json",httr::verbose())
+  res <- httr::POST(complete_url,httr::add_headers('X-Vault-Token' = token,"X-Vault-Wrap-TTL"=ttl), body = data_to_wrap, encode = "json",httr::verbose())
   ###Get the token that was used to wrap the secrets in Vault
   results<- jsonlite::fromJSON(httr::content(x = res,type = "text",encoding = "UTF-8"))
   ###Returns the wrap token used in the unwrap portion of Vault

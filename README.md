@@ -1,7 +1,7 @@
-# vault <img src="man/figures/vault.png" align="right" style="width: 200px; height: 150px;"/>
+# vault <a href="https://gonzalezben81.github.io/vault/"><img src="man/figures/logo.png" align="right" height="82" alt="vault website" /></a>
 <!-- badges: start -->
 
-[![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3)
 [![R-CMD-check](https://github.com/gonzalezben81/vault/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gonzalezben81/vault/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -15,5 +15,6 @@ The package **vault** allows you to work with Hashicorp Vault. Allowing you to i
 ```r
 library(vault)
 
-get_vault_data("vault.url.com",secret,token=token)
+get_vault_data(url = "vault-url.com",path = "secret-path",token=token)
+
 ```

@@ -27,10 +27,12 @@ config_aws_root_creds(
 writes the AWS Accesss Key ID, AWS Secret Access Key, Region used by the registered IAM User in AWS to Vault.
 }
 \description{
-Vault: Registers the AWS User credentials in Vault. Note: Please do not register the ROOT User tokens from your AWS instance.
+Vault: Registers the AWS User credentials in Vault. Note: Please do not
+register the ROOT User tokens from your AWS instance.
 }
 \details{
-This function registers the AWS User credentials in Vault used to get the Access Key ID and Secret Access Key for Users and roles in AWS.
+This function registers the AWS User credentials in Vault used to get the
+Access Key ID and Secret Access Key for Users and roles in AWS.
 }
 \note{
 Examples of role policy and trust policy required in AWS:

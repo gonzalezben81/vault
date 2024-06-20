@@ -20,7 +20,8 @@ Return's the user token that allows an approle to query secrets in Vault.
 Vault: Gets the approle token from Vault.
 }
 \details{
-This function gets the approle token from the vault instance. You can then utilize the approle token to query data from vault.
+This function gets the approle token from the vault instance. You can then
+utilize the approle token to query data from vault.
 }
 \examples{
 

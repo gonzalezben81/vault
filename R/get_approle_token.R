@@ -11,7 +11,8 @@
 #   Test Package:              'Ctrl + Shift + T'
 #' Vault: Gets the approle token from Vault.
 #'
-#' This function gets the approle token from the vault instance. You can then utilize the approle token to query data from vault.
+#' This function gets the approle token from the vault instance. You can then
+#' utilize the approle token to query data from vault.
 #' @param url URL of the Hashicorp Vault instance.
 #' @param role_id role_id of the approle in Vault.
 #' @param secret_id secret_id of the approle in Vault. 
@@ -29,7 +30,6 @@
 #' }
 #'
 #' @export
-
 get_approle_token <- function(url,role_id,secret_id){
   ###url of the Hashicorp Vault instance
   url <- url

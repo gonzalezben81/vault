@@ -9,9 +9,11 @@
 #   Build and Reload Package:  'Ctrl + Shift + B'
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
-#' Vault: Registers the AWS User credentials in Vault. Note: Please do not register the ROOT User tokens from your AWS instance. 
+#' Vault: Registers the AWS User credentials in Vault. Note: Please do not
+#' register the ROOT User tokens from your AWS instance. 
 #'
-#' This function registers the AWS User credentials in Vault used to get the Access Key ID and Secret Access Key for Users and roles in AWS. 
+#' This function registers the AWS User credentials in Vault used to get the
+#' Access Key ID and Secret Access Key for Users and roles in AWS. 
 #'
 #' @param url URL of the Hashicorp Vault instance.
 #' @param token token from user/github/approle/etc.... registered in Vault.
@@ -58,7 +60,7 @@
 #'
 #' }
 #'
-#' @export
+#' @export 
 
 config_aws_root_creds <- function(url=NULL,token=NULL,aws_key=NULL,aws_secret=NULL,aws_region=NULL){
   
@@ -67,7 +69,7 @@ config_aws_root_creds <- function(url=NULL,token=NULL,aws_key=NULL,aws_secret=NU
   ###Token from the Hashicorp Vault user
   token <- token
   ###AWS Access Key ID from IAM User in AWS
-  aws_key=aws_key
+  aws_key <- aws_key
   ###AWS secret access key from IAM User in AWS
   aws_secret=aws_secret
   ###AWS region where your IAM User is registered in AWS
