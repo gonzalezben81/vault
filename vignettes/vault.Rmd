@@ -1,0 +1,23 @@
+---
+title: "vault"
+author: "Ben Gonzalez"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+  html_document:
+vignette: >
+  %\VignetteIndexEntry{vault}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}  
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(vault)
+```
