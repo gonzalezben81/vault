@@ -37,7 +37,7 @@ wrap_secrets <- function(url=NULL,token=NULL,secrets_to_wrap=NULL,ttl='30m'){
   ###url of the Hashicorp Vault instance
   url <- url
   ###Time to Live for the wrap token that is returned from Vault
-  ttl=ttl
+  ttl <- ttl
   ###Secrets to be wrap in Vault.
   data_to_wrap<- jsonlite::toJSON(secrets_to_wrap)
   ###Pastes the url and the wrap path in Vault
