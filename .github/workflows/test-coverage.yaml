@@ -15,6 +15,16 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      
+    services:
+      vault:
+        image: vault:latest
+        ports:
+          - 8200:8200
+        options: >-
+          --cap-add=IPC_LOCK
+          --env 'VAULT_DEV_ROOT_TOKEN_ID=myroot'
+          --env 'VAULT_ADDR=http://127.0.0.1:8200'      
 
     steps:
       - uses: actions/checkout@v4
