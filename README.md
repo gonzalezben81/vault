@@ -3,7 +3,6 @@
 
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3)
 [![R-CMD-check](https://github.com/gonzalezben81/vault/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gonzalezben81/vault/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/gh/gonzalezben81/vault/graph/badge.svg?token=7STWR20Q4H)](https://codecov.io/gh/gonzalezben81/vault)
 <!-- badges: end -->
 
 ## vault
