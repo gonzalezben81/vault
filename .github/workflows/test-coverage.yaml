@@ -18,7 +18,7 @@ jobs:
       
     services:
       vault:
-        image: docker pull vault
+        image: vault
         ports:
           - 8200:8200
         options: >-
