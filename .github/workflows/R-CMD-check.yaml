@@ -29,6 +29,16 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      
+    services:
+      vault:
+        image: hashicorp/vault
+        ports:
+          - 8200:8200
+        options: >-
+          --cap-add=IPC_LOCK
+          --env 'VAULT_DEV_ROOT_TOKEN_ID=myroot'
+          --env 'VAULT_ADDR=http://127.0.0.1:8200'       
 
     steps:
       - uses: actions/checkout@v4
