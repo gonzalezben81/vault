@@ -12,9 +12,9 @@
 #' Vault: Gets the Approle ID from Vault.
 #'
 #' This function obtains the approle ID from Vault. The user can then utilize the approle ID retrieved to query secrets from Vault via the approle method. 
-#' You will need the URL of the Hashicorp Vault you are using and your user/github/etc... token to retrieve the approle id.
+#' You will need the URL of the HashiCorp Vault you are using and your user/github/etc... token to retrieve the approle id.
 #'
-#' @param url URL of the Hashicorp Vault instance.
+#' @param url URL of the HashiCorp Vault instance.
 #' @param role_name name of the role in your Vault instance.
 #' @param token token from your loging role such as user/pass method or github/auth method. 
 #' @keywords get_role_id
@@ -35,7 +35,7 @@
 
 
 get_role_id <- function(url,role_name,token){
-  ###url of the Hashicorp Vault instance
+  ###url of the HashiCorp Vault instance
   url <- url
   ###Role Name to get approle ID
   role_name <- role_name

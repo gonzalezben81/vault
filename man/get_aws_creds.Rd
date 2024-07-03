@@ -7,7 +7,7 @@
 get_aws_creds(url = NULL, token = NULL, role_name = NULL)
 }
 \arguments{
-\item{url}{URL of the Hashicorp Vault instance.}
+\item{url}{URL of the HashiCorp Vault instance.}
 
 \item{token}{token from user/github/approle/etc.... registered in Vault.}
 

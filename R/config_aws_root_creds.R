@@ -15,7 +15,7 @@
 #' This function registers the AWS User credentials in Vault used to get the
 #' Access Key ID and Secret Access Key for Users and roles in AWS. 
 #'
-#' @param url URL of the Hashicorp Vault instance.
+#' @param url URL of the HashiCorp Vault instance.
 #' @param token token from user/github/approle/etc.... registered in Vault.
 #' @param aws_key AWS Access Key ID from IAM User registered in AWS.
 #' @param aws_secret AWS Secret Access Key from IAM User registered in AWS.
@@ -64,9 +64,9 @@
 
 config_aws_root_creds <- function(url=NULL,token=NULL,aws_key=NULL,aws_secret=NULL,aws_region=NULL){
   
-  ###url of the Hashicorp Vault instance
+  ###url of the HashiCorp Vault instance
   url <- url
-  ###Token from the Hashicorp Vault user
+  ###Token from the HashiCorp Vault user
   token <- token
   ###AWS Access Key ID from IAM User in AWS
   aws_key <- aws_key
@@ -80,7 +80,7 @@ config_aws_root_creds <- function(url=NULL,token=NULL,aws_key=NULL,aws_secret=NU
   data_to_insert<- jsonlite::toJSON(aws_list)
   ###Pastes the url and path and creates the path through /v1/secret/
   complete_url<- paste0(url,':8200/v1/aws/config/root')
-  ###Puts the data into the Hashicorp Vault path.
+  ###Puts the data into the HashiCorp Vault path.
   res <- httr::PUT(complete_url,httr::add_headers('X-Vault-Token' = token), body = data_to_insert, encode = "json",httr::verbose())
   
   ###If the status returned is 204 return the following message else return an error message

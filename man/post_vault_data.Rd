@@ -7,7 +7,7 @@
 post_vault_data(url = NULL, path = NULL, token = NULL, secrets = NULL)
 }
 \arguments{
-\item{url}{URL of the Hashicorp Vault instance.}
+\item{url}{URL of the HashiCorp Vault instance.}
 
 \item{path}{path to the secret in the vault instance.}
 

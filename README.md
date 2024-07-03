@@ -7,7 +7,7 @@
 
 ## vault
 
-The package **vault** allows you to work with Hashicorp Vault. Allowing you to interact with retrieving secrets in a secure manner. You can utilize github and aws roles in addition to native vault roles to interact with your secrets. Additionally you can wrap your secrets and provide a one time use token for sharing secrets with others.
+The package **vault** allows you to work with HashiCorp Vault. Allowing you to interact with retrieving secrets in a secure manner. You can utilize github and aws roles in addition to native vault roles to interact with your secrets. Additionally you can wrap your secrets and provide a one time use token for sharing secrets with others.
 
 
 ### Get data from vault

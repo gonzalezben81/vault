@@ -4,6 +4,12 @@
     <loc>https://gonzalezben81.github.io/vault/404.html</loc>
   </url>
   <url>
+    <loc>https://gonzalezben81.github.io/vault/articles/awsvault.html</loc>
+  </url>
+  <url>
+    <loc>https://gonzalezben81.github.io/vault/articles/github.html</loc>
+  </url>
+  <url>
     <loc>https://gonzalezben81.github.io/vault/articles/index.html</loc>
   </url>
   <url>
@@ -14,6 +20,9 @@
   </url>
   <url>
     <loc>https://gonzalezben81.github.io/vault/index.html</loc>
+  </url>
+  <url>
+    <loc>https://gonzalezben81.github.io/vault/reference/aws_rotate_root_creds.html</loc>
   </url>
   <url>
     <loc>https://gonzalezben81.github.io/vault/reference/config_aws_root_creds.html</loc>

@@ -13,7 +13,7 @@
 #'
 #' This function gets the user token from Vault for the user name registered in your Vault instance registered at the auth/userpass path. 
 #'
-#' @param url URL of the Hashicorp Vault instance.
+#' @param url URL of the HashiCorp Vault instance.
 #' @param user username registered in Vault.
 #' @param pass password for username registered in Vault
 #' @keywords get_token
@@ -31,7 +31,7 @@
 #' @export
 
 get_user_token <- function(url,user,pass){
-  ###URL of the Hashicorp Vault instance
+  ###URL of the HashiCorp Vault instance
   url <- url
   ###Username to authenticate against the Vault API
   user <- user

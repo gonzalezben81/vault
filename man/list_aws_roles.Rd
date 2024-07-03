@@ -7,7 +7,7 @@
 list_aws_roles(url = NULL, token = NULL)
 }
 \arguments{
-\item{url}{URL of the Hashicorp Vault instance.}
+\item{url}{URL of the HashiCorp Vault instance.}
 
 \item{token}{token from user/github/approle/etc.... registered in Vault.}
 }

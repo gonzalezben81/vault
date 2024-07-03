@@ -7,14 +7,14 @@
 get_approle_token(url, role_id, secret_id)
 }
 \arguments{
-\item{url}{URL of the Hashicorp Vault instance.}
+\item{url}{URL of the HashiCorp Vault instance.}
 
 \item{role_id}{role_id of the approle in Vault.}
 
 \item{secret_id}{secret_id of the approle in Vault.}
 }
 \value{
-Return's the user token that allows an approle to query secrets in Vault.
+Return's the approle token that allows an approle to query secrets in Vault.
 }
 \description{
 Vault: Gets the approle token from Vault.

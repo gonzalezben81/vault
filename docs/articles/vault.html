@@ -54,6 +54,13 @@
 <li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/awsvault.html">AWS &amp; Vault</a>
+    <a class="dropdown-item" href="../articles/github.html">Github &amp; Vault</a>
+  </div>
+</li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -96,24 +103,27 @@ Gonzalez</h4>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_git.html" class="external-link">install_git</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://github.com/gonzalezben81/vault.git"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/gonzalezben81/vault" class="external-link">vault</a></span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="postwrite-secrets-to-vault">Post/Write secrets to vault<a class="anchor" aria-label="anchor" href="#postwrite-secrets-to-vault"></a>
-</h3>
+<div class="section level4">
+<h4 id="postwrite-secrets-to-vault">Post/Write secrets to vault<a class="anchor" aria-label="anchor" href="#postwrite-secrets-to-vault"></a>
+</h4>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">vault</span><span class="fu">::</span><span class="fu"><a href="../reference/post_vault_data.html">post_vault_data</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"vault-url.com"</span>,path <span class="op">=</span> <span class="st">"secret-path"</span>,token <span class="op">=</span> <span class="va">token</span>,secrets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>one<span class="op">=</span><span class="st">"two"</span>,three<span class="op">=</span><span class="st">"four"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="getretrieve-secrets-from-vault">Get/Retrieve secrets from vault<a class="anchor" aria-label="anchor" href="#getretrieve-secrets-from-vault"></a>
-</h3>
+<div class="section level4">
+<h4 id="getretrieve-secrets-from-vault">Get/Retrieve secrets from vault<a class="anchor" aria-label="anchor" href="#getretrieve-secrets-from-vault"></a>
+</h4>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_vault_data.html">get_vault_data</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"vault-url.com"</span>,path <span class="op">=</span> <span class="st">"secret-path"</span>,token <span class="op">=</span> <span class="va">token</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="wrap-secrets-from-vault">Wrap secrets from vault<a class="anchor" aria-label="anchor" href="#wrap-secrets-from-vault"></a>
-</h3>
+<div class="section level4">
+<h4 id="wrap-secrets-via-vault">Wrap secrets via vault<a class="anchor" aria-label="anchor" href="#wrap-secrets-via-vault"></a>
+</h4>
+<p>This function allows you to wrap secrets from vault and send them
+securly to another person via plain text. The vault token returned is
+only good for one time use,</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/wrap_secrets.html">wrap_secrets</a></span><span class="op">(</span>url <span class="op">=</span> ,token <span class="op">=</span> ,secrets_to_wrap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"one"</span><span class="op">=</span><span class="va">one</span>,<span class="st">"two"</span><span class="op">=</span><span class="va">two</span><span class="op">)</span>,ttl <span class="op">=</span> <span class="st">"30m"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/wrap_secrets.html">wrap_secrets</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"vault-url.com"</span>,token <span class="op">=</span> <span class="va">token</span> ,secrets_to_wrap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"one"</span><span class="op">=</span><span class="va">one</span>,<span class="st">"two"</span><span class="op">=</span><span class="va">two</span><span class="op">)</span>,ttl <span class="op">=</span> <span class="st">"30m"</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

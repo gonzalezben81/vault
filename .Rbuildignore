@@ -21,3 +21,5 @@
 ^tools$
 ^\.lintr.R$
 ^vignettes/\.quarto$
+^doc$
+^Meta$

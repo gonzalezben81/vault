@@ -25,20 +25,22 @@ devtools::install_git(url = "https://github.com/gonzalezben81/vault.git")
 library(vault)
 ```
 
-### Post/Write secrets to vault
+#### Post/Write secrets to vault
 
 ```{r eval=FALSE}
 vault::post_vault_data(url = "vault-url.com",path = "secret-path",token = token,secrets = list(one="two",three="four"))
 ```
 
-### Get/Retrieve secrets from vault
+#### Get/Retrieve secrets from vault
 
 ```{r eval=FALSE}
 get_vault_data(url = "vault-url.com",path = "secret-path",token = token)
 ```
 
-### Wrap secrets from vault
+#### Wrap secrets via vault
+
+This function allows you to wrap secrets from vault and send them securly to another person via plain text. The vault token returned is only good for one time use, 
 
 ```{r eval=FALSE}
-wrap_secrets(url = ,token = ,secrets_to_wrap = c("one"=one,"two"=two),ttl = "30m")
+wrap_secrets(url = "vault-url.com",token = token ,secrets_to_wrap = c("one"=one,"two"=two),ttl = "30m")
 ```

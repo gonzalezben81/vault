@@ -7,7 +7,7 @@
 get_github_token(url, github_token)
 }
 \arguments{
-\item{url}{url of the Hashicorp Vault instance.}
+\item{url}{url of the HashiCorp Vault instance.}
 
 \item{github_token}{personal authentication token or PAT from your github repo.}
 }
@@ -19,14 +19,13 @@ get_github_token: Gets a token from Vault utilizing your github login credential
 }
 \details{
 This function obtains the token for the github user from Vault. The user can then utilize the token retrieved to query secrets from Vault. 
-You will need the url of the Hashicorp Vault you are using and your PAT from github. You should have already created an organization in github
+You will need the url of the HashiCorp Vault you are using and your PAT from github. You should have already created an organization in github
 to utilize this login path in Vault.
 }
 \examples{
 
 \dontrun{ vault_git_token<-  get_github_token(url='vault.url',github_token='12345abcdef')
 
-print(vault_git_token)
 
 }
 

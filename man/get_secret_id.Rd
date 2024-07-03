@@ -7,11 +7,11 @@
 get_secret_id(url, role_name, token)
 }
 \arguments{
-\item{url}{URL of the Hashicorp Vault instance.}
+\item{url}{URL of the HashiCorp Vault instance.}
 
 \item{role_name}{name of the role in your Vault instance.}
 
-\item{token}{token from your user/github/etc... login method}
+\item{token}{token from your user/github/etc... login method. Note: the user/github/etc auth method this token is from must have access to work with approles in Vault}
 }
 \value{
 Return's the secret id that allows an individual to query secrets in Vault via the approle method.
@@ -21,7 +21,7 @@ Vault: Gets the secret id for the approle registered in vault e.g.(jenkins).
 }
 \details{
 This function obtains the secret id for the approle from Vault. The user can then utilize the secret id retrieved to obtain the approle token from Vault. 
-You will need the URL of the Hashicorp Vault you are using the role name in vault and a token from an auth path in Vault.
+You will need the URL of the HashiCorp Vault you are using the role name in vault and a token from an auth path in Vault.
 }
 \examples{
 \dontrun{  get_secret_id(url='vautl-url.com',role_name='jenkins',token='12345abcdef')

@@ -13,7 +13,7 @@
 #'
 #' This function lists the AWS roles that are registered in Vault. 
 #'
-#' @param url URL of the Hashicorp Vault instance.
+#' @param url URL of the HashiCorp Vault instance.
 #' @param token token from user/github/approle/etc.... registered in Vault.
 #' @keywords list_aws_roles
 #' @return Return's the AWS roles that are registered in Vault. 
@@ -36,7 +36,7 @@ list_aws_roles <- function(url=NULL,token=NULL){
   ###Token from Vault user/github/approle/etc...
   token <- token
   ####Paste together Vault url using the sprintf() function
-  complete_url <- sprintf('%s:8200/v1/aws/roles',url)
+  complete_url <- sprintf('%s/v1/aws/role',url)
   ###Gets the list of AWS roles registered in Vault
   res<- httr::VERB(verb = 'LIST',complete_url, httr::add_headers('X-Vault-Token' = token))
   results<- jsonlite::fromJSON(httr::content(x = res,type = "text",encoding = "UTF-8"))

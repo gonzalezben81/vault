@@ -13,7 +13,7 @@
 #'
 #' This function gets AWS STS credentials from the registered role in your Vault instance. 
 #'
-#' @param url url of the Hashicorp Vault instance.
+#' @param url url of the HashiCorp Vault instance.
 #' @param token token from user/github/approle/etc.... registered in Vault.
 #' @param role_name role_name for role registered in Vault
 #' @keywords get_aws_creds
@@ -38,7 +38,7 @@ get_aws_sts <- function(url=NULL,token=NULL,role_name=NULL){
   token <- token
   ####Paste together Vault url using the sprintf() function
   complete_url <- sprintf('%s:8200/v1/aws/sts/%s',url,role_name)
-  ###Gets the data from the Hashicorp Vault path
+  ###Gets the data from the HashiCorp Vault path
   res<- httr::GET(complete_url, httr::add_headers('X-Vault-Token' = token))
   results<- jsonlite::fromJSON(httr::content(x = res,type = "text",encoding = "UTF-8"))
   print(results)

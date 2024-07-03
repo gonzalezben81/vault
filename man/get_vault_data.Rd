@@ -4,14 +4,16 @@
 \alias{get_vault_data}
 \title{get_vault_data}
 \usage{
-get_vault_data(url = NULL, path = NULL, token = NULL)
+get_vault_data(url = NULL, path = NULL, token = NULL, dataframe = "N")
 }
 \arguments{
-\item{url}{URL of the Hashicorp Vault instance.}
+\item{url}{URL of the HashiCorp Vault instance.}
 
 \item{path}{path to the secret in the vault instance. The ?version=2 can be removed and the most recent version of the secret will be returned. An user can specify a specific verison of a secret as needed.}
 
 \item{token}{token for the vault instance.}
+
+\item{dataframe}{whether to return the secret data via a dataframe. The default is "N"}
 }
 \value{
 Return's the data or secrets that are in the vault instance.
@@ -21,12 +23,12 @@ Vault: Gets the Vault Data
 }
 \details{
 This function gets "secrets" or "data" from the vault instance and returns them inside a dataframe.
-You will need the Hashicorp Vault URL you are using including the full path to the secret e.g. (https://url.vault.com/v1/secret/data/things)
+You will need the HashiCorp Vault URL you are using including the full path to the secret e.g. (https://url.vault.com/v1/secret/data/things)
 and lastly you will need a token that allows you to interact with Vault via the API.
 }
 \examples{
 
-\dontrun{  get_vault_data(url = "https://vault-url.com",path = "data?version=2",token = "hvs.token")
+\dontrun{  get_vault_data(url = "https://vault-url.com",path = "data?version=2",token = "hvs.token",dataframe="N")
 
 }
 

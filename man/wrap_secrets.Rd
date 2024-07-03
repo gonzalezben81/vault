@@ -7,7 +7,7 @@
 wrap_secrets(url = NULL, token = NULL, secrets_to_wrap = NULL, ttl = "30m")
 }
 \arguments{
-\item{url}{URL of the Hashicorp Vault instance.}
+\item{url}{URL of the HashiCorp Vault instance.}
 
 \item{token}{The token used to wrap the secrets in Vault via the wrapping utility.}
 
@@ -23,8 +23,8 @@ Vault: Gets the approle token from Vault.
 }
 \details{
 This function wraps secrets via the wrap endpoint in Vault. The function returns a single use token that can be utilized once to retrieve the secrets.
-[Vault Wrap Token API](https://developer.hashicorp.com/vault/api-docs/system/wrapping-wrap)
-[Vault Wrapping Overview](https://developer.hashicorp.com/vault/docs/concepts/response-wrapping)
+[Vault Wrap Token API](https://developer.HashiCorp.com/vault/api-docs/system/wrapping-wrap)
+[Vault Wrapping Overview](https://developer.HashiCorp.com/vault/docs/concepts/response-wrapping)
 }
 \examples{
 

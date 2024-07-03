@@ -7,7 +7,7 @@
 get_user_token(url, user, pass)
 }
 \arguments{
-\item{url}{URL of the Hashicorp Vault instance.}
+\item{url}{URL of the HashiCorp Vault instance.}
 
 \item{user}{username registered in Vault.}
 

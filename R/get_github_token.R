@@ -12,10 +12,10 @@
 #' get_github_token: Gets a token from Vault utilizing your github login credentials. 
 #'
 #' This function obtains the token for the github user from Vault. The user can then utilize the token retrieved to query secrets from Vault. 
-#' You will need the url of the Hashicorp Vault you are using and your PAT from github. You should have already created an organization in github
+#' You will need the url of the HashiCorp Vault you are using and your PAT from github. You should have already created an organization in github
 #' to utilize this login path in Vault. 
 #'
-#' @param url url of the Hashicorp Vault instance.
+#' @param url url of the HashiCorp Vault instance.
 #' @param github_token personal authentication token or PAT from your github repo.
 #' @keywords get_github_token
 #' @return Return's the user token that allows an individual to query secrets in Vault. 
@@ -33,7 +33,7 @@
 #' @export
 
 get_github_token <- function(url,github_token){
-  ###url of the Hashicorp Vault instance
+  ###url of the HashiCorp Vault instance
   url <- url
   ###Secrets to be written to Vault.
   token <- list(token=github_token)

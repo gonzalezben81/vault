@@ -12,9 +12,9 @@
 #' Vault: Gets the approle token from Vault.
 #'
 #' This function wraps secrets via the wrap endpoint in Vault. The function returns a single use token that can be utilized once to retrieve the secrets.
-#' [Vault Wrap Token API](https://developer.hashicorp.com/vault/api-docs/system/wrapping-wrap)
-#' [Vault Wrapping Overview](https://developer.hashicorp.com/vault/docs/concepts/response-wrapping)
-#' @param url URL of the Hashicorp Vault instance.
+#' [Vault Wrap Token API](https://developer.HashiCorp.com/vault/api-docs/system/wrapping-wrap)
+#' [Vault Wrapping Overview](https://developer.HashiCorp.com/vault/docs/concepts/response-wrapping)
+#' @param url URL of the HashiCorp Vault instance.
 #' @param token The token used to wrap the secrets in Vault via the wrapping utility.
 #' @param secrets_to_wrap The secrets you want to wrap via the Vault wrapping utility.
 #' @param ttl Time to live or ttl, refers to the time a token is able to be used to unwrap the wrapped secrets in Vault.
@@ -34,7 +34,7 @@
 #' @export
 
 wrap_secrets <- function(url=NULL,token=NULL,secrets_to_wrap=NULL,ttl='30m'){
-  ###url of the Hashicorp Vault instance
+  ###url of the HashiCorp Vault instance
   url <- url
   ###Time to Live for the wrap token that is returned from Vault
   ttl <- ttl

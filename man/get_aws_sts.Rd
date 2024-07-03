@@ -7,7 +7,7 @@
 get_aws_sts(url = NULL, token = NULL, role_name = NULL)
 }
 \arguments{
-\item{url}{url of the Hashicorp Vault instance.}
+\item{url}{url of the HashiCorp Vault instance.}
 
 \item{token}{token from user/github/approle/etc.... registered in Vault.}
 
