@@ -24,7 +24,9 @@ to utilize this login path in Vault.
 }
 \examples{
 
-\dontrun{ get_github_token(url='vault.url',github_token='12345abcdef')
+\dontrun{ vault_git_token<-  get_github_token(url='vault.url',github_token='12345abcdef')
+
+print(vault_git_token)
 
 }
 

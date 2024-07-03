@@ -24,7 +24,7 @@ This function obtains the secret id for the approle from Vault. The user can the
 You will need the URL of the Hashicorp Vault you are using the role name in vault and a token from an auth path in Vault.
 }
 \examples{
-\dontrun{  get_secret_id(url='vautl.url',role_name='jenkins',token='12345abcdef')
+\dontrun{  get_secret_id(url='vautl-url.com',role_name='jenkins',token='12345abcdef')
 
 }
 

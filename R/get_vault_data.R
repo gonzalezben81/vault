@@ -12,12 +12,12 @@
 #' Vault: Gets the Vault Data
 #'
 #' This function gets "secrets" or "data" from the vault instance and returns them inside a dataframe.
-#' You will need the Hashicorp Vault URL you are using including the full path to the secret e.g. (https://url.vault.com/v1/secret/things)
+#' You will need the Hashicorp Vault URL you are using including the full path to the secret e.g. (https://url.vault.com/v1/secret/data/things)
 #' and lastly you will need a token that allows you to interact with Vault via the API.
 #'
 #' @param url URL of the Hashicorp Vault instance.
 #' @param token token for the vault instance.
-#' @param path path to the secret in the vault instance.
+#' @param path path to the secret in the vault instance. The ?version=2 can be removed and the most recent version of the secret will be returned. An user can specify a specific verison of a secret as needed.
 #' @keywords get_vault_data
 #' @return Return's the data or secrets that are in the vault instance.
 #' @name get_vault_data
@@ -26,7 +26,7 @@
 #' @import jsonlite
 #' @examples
 #'
-#' \dontrun{  get_vault_data(url,path,token)
+#' \dontrun{  get_vault_data(url = "https://vault-url.com",path = "data?version=2",token = "hvs.token")
 #'
 #' }
 #'
@@ -41,13 +41,15 @@ get_vault_data <- function(url=NULL,path=NULL,token=NULL){
   token <- token
   ###Path to the Hashicorp Vault secrets
   path <- path
-  ###Pastes the url and path and creates the path through /v1/secret/
-  complete_url<- paste0(url,':8200/v1/secret/',path)
+  ###Pastes the url and path and creates the path through /v1/secret/data is used for kv version 2
+  ###v2 allows you to keep several versions of secrets in Vault
+  ###Vault API Reference:https://developer.hashicorp.com/vault/api-docs/secret/kv/kv-v2
+  complete_url<- paste0(url,'/v1/secret/data/',path)
 
   ###Gets the data from the Hashicorp Vault path
-  res<- httr::GET(complete_url, httr::add_headers('X-Vault-Token' = token))
+  res<- httr::GET(complete_url, httr::add_headers('X-Vault-Token' = token),httr::verbose())
   ###Gets the data from the JSON format
-  res<- jsonlite::fromJSON(httr::content(x = res,type = "text",encoding = "UTF-8"))
+  res<- jsonlite::fromJSON(httr::content(x = res,type = "text",encoding = "UTF-8"),httr::verbose())
   ###Puts the data into a data frame
   # if(dataframe=="Y"){
   # res<- as.data.frame(res$data)

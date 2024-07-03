@@ -31,18 +31,19 @@
 #' @export
 
 get_user_token <- function(url,user,pass){
-  ###url of the Hashicorp Vault instance
+  ###URL of the Hashicorp Vault instance
   url <- url
-  ###Path to the Hashicorp Vault User Verification Path
+  ###Username to authenticate against the Vault API
   user <- user
-  ###Secrets to be written to Vault.
-  secrets <- list(username=user,password=pass)
-  data_to_insert<- jsonlite::toJSON(secrets)
-  ###Pastes the url and path and creates the path through /v1/secret/
-  complete_url<- paste0(url,':8200/v1/auth/userpass/login/',user)
-  ###Puts the data into the Hashicorp Vault path.
-  res <- httr::PUT(complete_url, body = data_to_insert, encode = "json",httr::verbose())
-  ###If the status returned is 204 return the following message else return an error message
+  ###Password to login to Vault with username
+  pass_list <- list(password = pass)
+  ###Pastes the url and path and creates the path through /v1/auth/userpass/login/username
+  ###Removed the reference to port :8200
+  complete_url<- paste0(url,'/v1/auth/userpass/login/',user)
+  print(complete_url)
+  ###POST the username and password to retrieve a token for the user to work with Vault
+  res <- httr::POST(complete_url, body = pass_list, encode = "json",httr::verbose())
+  ###Retrieve the token and other information from the Vault server API
   results<- jsonlite::fromJSON(httr::content(x = res,type = "text",encoding = "UTF-8"))
   return(results$auth)
 }

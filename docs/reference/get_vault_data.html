@@ -67,7 +67,7 @@
 
 
 <dt>path</dt>
-<dd><p>path to the secret in the vault instance.</p></dd>
+<dd><p>path to the secret in the vault instance. The ?version=2 can be removed and the most recent version of the secret will be returned. An user can specify a specific verison of a secret as needed.</p></dd>
 
 
 <dt>token</dt>
@@ -83,14 +83,14 @@
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This function gets "secrets" or "data" from the vault instance and returns them inside a dataframe.
-You will need the Hashicorp Vault URL you are using including the full path to the secret e.g. (https://url.vault.com/v1/secret/things)
+You will need the Hashicorp Vault URL you are using including the full path to the secret e.g. (https://url.vault.com/v1/secret/data/things)
 and lastly you will need a token that allows you to interact with Vault via the API.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span>   <span class="fu">get_vault_data</span><span class="op">(</span><span class="va">url</span>,<span class="va">path</span>,<span class="va">token</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span>   <span class="fu">get_vault_data</span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://vault-url.com"</span>,path <span class="op">=</span> <span class="st">"data?version=2"</span>,token <span class="op">=</span> <span class="st">"hvs.token"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>

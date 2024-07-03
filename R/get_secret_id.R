@@ -24,7 +24,7 @@
 #' @import httr
 #' @import jsonlite
 #' 
-#' @examples \dontrun{  get_secret_id(url='vautl.url',role_name='jenkins',token='12345abcdef')
+#' @examples \dontrun{  get_secret_id(url='vautl-url.com',role_name='jenkins',token='12345abcdef')
 #'
 #' }
 #'
@@ -38,7 +38,7 @@ get_secret_id <- function(url,role_name,token){
   ###Token from user
   token <- token
   ###Pastes the url and github login path together
-  complete_url<- paste0(url,sprintf(':8200/v1/auth/approle/role/%s/secret-id',role_name))
+  complete_url<- paste0(url,sprintf('/v1/auth/approle/role/%s/secret-id',role_name))
   ###Posts the data to Vault to retrieve the user token
   ###Gets the data from the Hashicorp Vault path
   res<- httr::POST(complete_url, httr::add_headers('X-Vault-Token' = token))

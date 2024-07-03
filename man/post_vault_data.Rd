@@ -22,8 +22,8 @@ Allows a user to write data to Vault.
 Vault: Posts data to the path you specify in Vault.
 }
 \details{
-This function writes secrets or data to the vault instance and gives a message if they were written correctly.
-You will need the Hashicorp Vault url you are using including the full path to the secret e.g. (https://url.vault.com/v1/secret/things)
+This function writes secrets or data to the vault instance and returns a message if the secrets were written correctly.
+You will need the HashiCorp Vault URL you are using including the full path to the secret e.g. (https://url.vault.com/v1/secret/things)
 and lastly you will need a token that allows you to interact with Vault via the API. You can pass a list of secrets at once use 'list(one="two",three="four) and so on and so forth.
 This will allow you to send several secrets to Vault at once. Remember to not overwrite secrets you will want to write new secrets with the old secrets as placeholders.
 }

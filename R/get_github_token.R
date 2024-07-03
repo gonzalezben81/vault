@@ -25,7 +25,8 @@
 #' @import jsonlite
 #' @examples
 #'
-#' \dontrun{ get_github_token(url='vault.url',github_token='12345abcdef')
+#' \dontrun{ vault_git_token<-  get_github_token(url='vault.url',github_token='12345abcdef')
+#' 
 #'
 #' }
 #'
@@ -36,11 +37,11 @@ get_github_token <- function(url,github_token){
   url <- url
   ###Secrets to be written to Vault.
   token <- list(token=github_token)
-  token_data<- jsonlite::toJSON(token)
+  #token_data<- jsonlite::toJSON(token)
   ###Pastes the url and github login path together
-  complete_url<- paste0(url,':8200/v1/auth/github/login')
+  complete_url<- paste0(url,'/v1/auth/github/login')
   ###Posts the data to Vault to retrieve the user token
-  res <- httr::POST(complete_url, body = token_data, encode = "json",httr::verbose())
+  res <- httr::POST(complete_url, body = token, encode = "json",httr::verbose())
   ###Converts data from UTF-8 to json
   results<- jsonlite::fromJSON(httr::content(x = res,type = "text",encoding = "UTF-8"))
   return(results$auth$client_token)

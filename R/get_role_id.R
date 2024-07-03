@@ -30,6 +30,9 @@
 #' }
 #'
 #' @export
+#' 
+#' 
+
 
 get_role_id <- function(url,role_name,token){
   ###url of the Hashicorp Vault instance
@@ -39,10 +42,10 @@ get_role_id <- function(url,role_name,token){
   ###Token from user/github/etc... login credentials
   token <- token
   ###Pastes the URL and github login path together
-  complete_url<- paste0(url,sprintf(':8200/v1/auth/approle/role/%s/role-id',role_name))
+  complete_url<- paste0(url,sprintf('/v1/auth/approle/role/%s/role-id',role_name))
   ###Posts the data to Vault to retrieve the user token
-  httr::GET(complete_url)
-  ###Gets the data from the Hashicorp Vault path
+  #httr::GET(complete_url)
+  ###Retrieves the role-id from the app-role in Vault
   res<- httr::GET(complete_url, httr::add_headers('X-Vault-Token' = token))
   ###Gets the data from the JSON format
   res<- jsonlite::fromJSON(httr::content(x = res,type = "text",encoding = "UTF-8"))
