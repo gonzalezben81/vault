@@ -56,7 +56,7 @@
 #' @import jsonlite
 #' @examples
 #'
-#' \dontrun{  config_aws_root_creds(url,token,aws_key,aws_secret,aws_region)
+#' \dontrun{  config_aws_root_creds(url="vault-url.com",token=token,aws_key="aws-key-from-iam-user",aws_secret="aws-secret-from-iam-user",aws_region="us-east-1")
 #'
 #' }
 #'
@@ -79,7 +79,7 @@ config_aws_root_creds <- function(url=NULL,token=NULL,aws_key=NULL,aws_secret=NU
   ###Write AWS secrets to Json list
   data_to_insert<- jsonlite::toJSON(aws_list)
   ###Pastes the url and path and creates the path through /v1/secret/
-  complete_url<- paste0(url,':8200/v1/aws/config/root')
+  complete_url<- paste0(url,'/v1/aws/config/root')
   ###Puts the data into the HashiCorp Vault path.
   res <- httr::PUT(complete_url,httr::add_headers('X-Vault-Token' = token), body = data_to_insert, encode = "json",httr::verbose())
   

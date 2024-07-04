@@ -1,5 +1,5 @@
 ---
-title: "Github & Vault"
+title: "GitHub & Vault"
 author: "Ben Gonzalez"
 date: "`r Sys.Date()`"
 output: 
@@ -77,3 +77,15 @@ vault_git_token<-  get_github_token(url='vault.url.com',github_token='ghp_12345a
 get_vault_data(url = "vault-url.com",path = "secret-path",token = vault_git_token)
 ```
       
+#### Wrap secrets via vault
+
+This function allows you to wrap secrets from vault and send them securly to another person via plain text. The vault token returned is only good for a one time use. 
+
+
+```{r eval=FALSE}
+wrap_secrets(url = "vault-url.com",token = token ,secrets_to_wrap = list("one"=one,"two"=two),ttl = "30m")
+```      
+
+You will see the following error in the vault console if the token to wrap the secrets has already been utilized elsewhere.
+
+![Unwrap Error](../man/figures/wrap.png)

@@ -47,7 +47,7 @@ You will now create the IAM policy for your IAM User
 
 ```
 
-### Create connection to Vault via AWS User
+### Create connection to Vault via AWS IAM User
 
 
 Enable aws auth on your vault instance.

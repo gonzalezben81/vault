@@ -24,7 +24,7 @@
 #' @import jsonlite
 #' @examples
 #'
-#' \dontrun{  get_aws_creds(url,token,role_name)
+#' \dontrun{  get_aws_creds(url="vault-url.com",token=token,role_name="aws-vault-role-name")
 #'
 #' }
 #'
@@ -37,7 +37,7 @@ get_aws_creds <- function(url=NULL,token=NULL,role_name=NULL){
   ###Token from Vault user/github/approle/etc...
   token <- token
   ####Paste together Vault url using the sprintf() function
-  complete_url <- sprintf('%s:8200/v1/aws/creds/%s',url,role_name)
+  complete_url <- sprintf('%s/v1/aws/creds/%s',url,role_name)
   ###Gets the data from the HashiCorp Vault path
   res<- httr::GET(complete_url, httr::add_headers('X-Vault-Token' = token))
   results<- jsonlite::fromJSON(httr::content(x = res,type = "text",encoding = "UTF-8"))
