@@ -83,7 +83,7 @@ This function allows you to wrap secrets from vault and send them securly to ano
 
 
 ```{r eval=FALSE}
-wrap_secrets(url = "vault-url.com",token = token ,secrets_to_wrap = list("one"=one,"two"=two),ttl = "30m")
+wrap_secrets(url = "vault-url.com",token = vault_git_token ,secrets_to_wrap = list("one"=one,"two"=two),ttl = "30m")
 ```      
 
 You will see the following error in the vault console if the token to wrap the secrets has already been utilized elsewhere.
