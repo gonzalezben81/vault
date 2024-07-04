@@ -9,47 +9,50 @@
 #   Build and Reload Package:  'Ctrl + Shift + B'
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
+#' @description
 #' Vault: Registers the AWS User credentials in Vault. Note: Please do not
 #' register the ROOT User tokens from your AWS instance. 
 #'
 #' This function registers the AWS User credentials in Vault used to get the
-#' Access Key ID and Secret Access Key for Users and roles in AWS. 
+#' Access Key ID and Secret Access Key for Users and roles in AWS.
+#' 
+#' Examples of role policy and trust policy required in AWS:
+#' 
+#' @details
+#' Example Trust Policy required in AWS:
+#' \preformatted{{
+#'   "Version": "2012-10-17",
+#'   "Statement": [
+#'     {
+#'       "Effect": "Allow",
+#'       "Principal": {
+#'         "AWS": "arn:aws:iam::ACCOUNT-ID-WITHOUT-HYPHENS:user/VAULT-AWS-ROOT-CONFIG-USER-NAME"
+#'       },
+#'       "Action": "sts:AssumeRole"
+#'     }
+#'   ]
+#'  }
+#' }
+#' Example IAM User Policy required in AWS:
+#' \preformatted{{
+#' "Version": "2012-10-17",
+#' "Statement": {
+#'   "Effect": "Allow",
+#'   "Action": "sts:AssumeRole",
+#'   "Resource": "arn:aws:iam::ACCOUNT-ID-WITHOUT-HYPHENS:role/RoleNameToAssume"
+#'    }
+#'   }
+#' }
+#' 
 #'
 #' @param url URL of the HashiCorp Vault instance.
 #' @param token token from user/github/approle/etc.... registered in Vault.
 #' @param aws_key AWS Access Key ID from IAM User registered in AWS.
 #' @param aws_secret AWS Secret Access Key from IAM User registered in AWS.
 #' @param aws_region AWS Region where IAM User is registered in 
-#' @note  Examples of role policy and trust policy required in AWS:
-#''\preformatted{Example Trust Policy required in AWS: 
-#''{
-#''  "Version": "2012-10-17",
-#''  "Statement": [
-#''    {
-#''      "Effect": "Allow",
-#''      "Principal": {
-#''        "AWS": "arn:aws:iam::ACCOUNT-ID-WITHOUT-HYPHENS:user/VAULT-AWS-ROOT-CONFIG-USER-NAME"
-#''      },
-#''      "Action": "sts:AssumeRole"
-#''    }
-#''  ]
-#''}
-#''}
-#' 
-#''\preformatted{Example IAM User Policy required in AWS: 
-#''{
-#''"Version": "2012-10-17",
-#''"Statement": {
-#''  "Effect": "Allow",
-#''  "Action": "sts:AssumeRole",
-#''  "Resource": "arn:aws:iam::ACCOUNT-ID-WITHOUT-HYPHENS:role/RoleNameToAssume"
-#''}
-#''}
-#''}
-#' 
 #' @references \url{https://www.vaultproject.io/docs/secrets/aws}
 #' @keywords config_aws_root_creds
-#' @return writes the AWS Accesss Key ID, AWS Secret Access Key, Region used by the registered IAM User in AWS to Vault. 
+#' @return Writes the AWS Access Key ID, AWS Secret Access Key, Region used by the registered IAM User in AWS to Vault. 
 #' @name config_aws_root_creds
 #' @title config_aws_root_creds
 #' @import httr

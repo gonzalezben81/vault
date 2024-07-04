@@ -24,47 +24,46 @@ config_aws_root_creds(
 \item{aws_region}{AWS Region where IAM User is registered in}
 }
 \value{
-writes the AWS Accesss Key ID, AWS Secret Access Key, Region used by the registered IAM User in AWS to Vault.
+Writes the AWS Access Key ID, AWS Secret Access Key, Region used by the registered IAM User in AWS to Vault.
 }
 \description{
 Vault: Registers the AWS User credentials in Vault. Note: Please do not
-register the ROOT User tokens from your AWS instance.
-}
-\details{
+register the ROOT User tokens from your AWS instance. 
+
 This function registers the AWS User credentials in Vault used to get the
 Access Key ID and Secret Access Key for Users and roles in AWS.
-}
-\note{
-Examples of role policy and trust policy required in AWS:
-'\preformatted{Example Trust Policy required in AWS: 
-'{
-'  "Version": "2012-10-17",
-'  "Statement": [
-'    {
-'      "Effect": "Allow",
-'      "Principal": {
-'        "AWS": "arn:aws:iam::ACCOUNT-ID-WITHOUT-HYPHENS:user/VAULT-AWS-ROOT-CONFIG-USER-NAME"
-'      },
-'      "Action": "sts:AssumeRole"
-'    }
-'  ]
-'}
-'}
 
-'\preformatted{Example IAM User Policy required in AWS: 
-'{
-'"Version": "2012-10-17",
-'"Statement": {
-'  "Effect": "Allow",
-'  "Action": "sts:AssumeRole",
-'  "Resource": "arn:aws:iam::ACCOUNT-ID-WITHOUT-HYPHENS:role/RoleNameToAssume"
-'}
-'}
-'}
+Examples of role policy and trust policy required in AWS:
+}
+\details{
+Example Trust Policy required in AWS:
+\preformatted{{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::ACCOUNT-ID-WITHOUT-HYPHENS:user/VAULT-AWS-ROOT-CONFIG-USER-NAME"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+ }
+}
+Example IAM User Policy required in AWS:
+\preformatted{{
+"Version": "2012-10-17",
+"Statement": {
+  "Effect": "Allow",
+  "Action": "sts:AssumeRole",
+  "Resource": "arn:aws:iam::ACCOUNT-ID-WITHOUT-HYPHENS:role/RoleNameToAssume"
+   }
+  }
+}
 }
 \examples{
 
-\dontrun{  config_aws_root_creds(url,token,aws_key,aws_secret,aws_region)
+\dontrun{  config_aws_root_creds(url="vault-url.com",token=token,aws_key="aws-key-from-iam-user",aws_secret="aws-secret-from-iam-user",aws_region="us-east-1")
 
 }
 

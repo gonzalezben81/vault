@@ -24,7 +24,7 @@ This function gets the AWS creds from the role/IAM User registered in Vault.
 }
 \examples{
 
-\dontrun{  get_aws_creds(url,token,role_name)
+\dontrun{  get_aws_creds(url="vault-url.com",token=token,role_name="aws-vault-role-name")
 
 }
 

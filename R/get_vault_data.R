@@ -10,14 +10,16 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 #' Vault: Gets the Vault Data
-#'
+#' 
+#' @description
 #' This function gets "secrets" or "data" from the vault instance and returns them inside a dataframe.
-#' You will need the HashiCorp Vault URL you are using including the full path to the secret e.g. (https://url.vault.com/v1/secret/data/things)
+#' You will need the HashiCorp Vault URL you are using including the full path to the secret e.g. my/secrets
 #' and lastly you will need a token that allows you to interact with Vault via the API.
+#' 
 #'
 #' @param url URL of the HashiCorp Vault instance.
 #' @param token token for the vault instance.
-#' @param path path to the secret in the vault instance. The ?version=2 can be removed and the most recent version of the secret will be returned. An user can specify a specific verison of a secret as needed.
+#' @param path path to the secret in the vault instance. The ?version=2 can be removed and the most recent version of the secret will be returned. An user can specify a specific version of a secret as needed.
 #' @param dataframe whether to return the secret data via a dataframe. The default is "N"
 #' @keywords get_vault_data
 #' @return Return's the data or secrets that are in the vault instance.

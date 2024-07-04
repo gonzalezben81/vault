@@ -25,6 +25,9 @@
     <loc>https://gonzalezben81.github.io/vault/reference/aws_rotate_root_creds.html</loc>
   </url>
   <url>
+    <loc>https://gonzalezben81.github.io/vault/reference/build_home.html</loc>
+  </url>
+  <url>
     <loc>https://gonzalezben81.github.io/vault/reference/config_aws_root_creds.html</loc>
   </url>
   <url>
@@ -59,6 +62,9 @@
   </url>
   <url>
     <loc>https://gonzalezben81.github.io/vault/reference/list_aws_roles.html</loc>
+  </url>
+  <url>
+    <loc>https://gonzalezben81.github.io/vault/reference/my_function.html</loc>
   </url>
   <url>
     <loc>https://gonzalezben81.github.io/vault/reference/post_vault_data.html</loc>
