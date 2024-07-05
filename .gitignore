@@ -5,3 +5,10 @@
 inst/doc
 /doc/
 /Meta/
+dadpolicy.json
+defaultpolicy.json
+heatherpolicy.json
+ui.json
+consul.service
+approle-admin-levelpolicy.json
+allinonepolicy.json

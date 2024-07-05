@@ -1,0 +1,83 @@
+---
+title: "Azure & Vault"
+author: "Ben Gonzalez"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+  html_document:
+vignette: >
+  %\VignetteIndexEntry{Azure & Vault}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}  
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+#### Creates Azure Resources
+
+Before you configure the Azure auth method in Vault you will want to setup an App Registration in Azure. This is where you will provide the callback URLs when authenticating via the Azure OIDC method.
+
+#### Enable the OIDC auth method
+
+```bash
+vault auth enable oidc
+
+```
+
+Check to see if the vault auth oidc method has been enabled.
+
+```bash
+vault auth list
+```
+
+#### Setup the OIDC configuration for Azure in Vault
+
+Next you will want to setup the oidc configuration for Azure in Vault. You will want to do this via the Vault CLI, preferrably as the root token user
+
++ oidc_discover_url: the URL of your Azure tenant
++ oidc_client_id: client id from your Azure tenant
++ oidc_client_secret: client secret from your Azure tenant
+
+
+```bash
+vault write auth/oidc/config \
+    oidc_discovery_url="https://login.microsoftonline.com/<azure-tenant-id>/v2.0" \
+    oidc_client_id="<azure-client-id>" \
+    oidc_client_secret="<azure-secret>" \
+    default_role="azure-developers"
+
+```
+
+#### Setup Azure role that will authenticate with Vault
+
+Here you will want to create the Azure role that will authenticate between Azure and Vault for you.
+
+```bash
+vault write auth/oidc/role/azure-developers \
+    user_claim="email" \
+    groups_claim="groups" \
+    role_type="oidc" \
+    oidc_scopes="https://graph.microsoft.com/.default" \
+    allowed_redirect_uris=""http://localhost:8250/oidc/callback",https://<url-redirect >/ui/vault/auth/oidc/oidc/callback"
+    policies="azure-developers" \
+    ttl=1h  
+
+```
+
+#### Test the Azure OIDC login method
+
+```bash
+vault login -method=oidc
+```
+---
+
+References
+
+[Azure Vault Tutorial](https://developer.hashicorp.com/vault/tutorials/auth-methods/oidc-auth-azure)
+
+[Azure Tenant Setup](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-create-new-tenant)
