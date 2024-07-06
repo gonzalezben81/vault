@@ -94,7 +94,7 @@ vault write auth/approle/role/vault-role-for-aws-ec2role \
     secret_id_num_uses=40
 ```    
 
-List the roles you creates for the aws auth method
+List the roles you created for the aws auth method
 
 ```bash
 vault list /auth/aws/role
