@@ -23,8 +23,6 @@ Vault: Gets the approle token from Vault.
 }
 \details{
 This function wraps secrets via the wrap endpoint in Vault. The function returns a single use token that can be utilized once to retrieve the secrets.
-[Vault Wrap Token API](https://developer.HashiCorp.com/vault/api-docs/system/wrapping-wrap)
-[Vault Wrapping Overview](https://developer.HashiCorp.com/vault/docs/concepts/response-wrapping)
 }
 \examples{
 
@@ -32,5 +30,9 @@ This function wraps secrets via the wrap endpoint in Vault. The function returns
 
 }
 
+}
+\references{
+[Vault Wrap Token API]\url{https://developer.HashiCorp.com/vault/api-docs/system/wrapping-wrap}
+[Vault Wrapping Overview]\url{https://developer.HashiCorp.com/vault/docs/concepts/response-wrapping}
 }
 \keyword{get_approle_token}

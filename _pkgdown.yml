@@ -5,6 +5,10 @@ authors:
   Ben Gonzalez:
     href: https://rgonzo.com
 template:
+  params:
+    docsearch:
+      api_key: 9371d0ca977c69197a8ce26cbd43512b
+      index_name: gonzalezben81io
   bootstrap: 5
   light-switch: true
   bslib:
