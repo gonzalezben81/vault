@@ -18,36 +18,85 @@ knitr::opts_chunk$set(
 )
 ```
 
-### Creates AWS Resources
+#### Creates AWS Resources
 
 Before you configure the HCP Vault AWS auth method, you must create the necessary resources in AWS. The AWS auth method will require an IAM policy that permits the appropriate access for the auth method, an IAM user with programmatic access, and one or more roles that you will assign to other AWS services that require authentication to Vault.
 
-### Create IAM Policy
+#### Create the IAM Policy for your IAM User
 
-You will now create the IAM policy for your IAM User
+The below policy needs to be attached to the IAM User you are creating in AWS.
+
+
+**Note: You may need to add more IAM permissions if you receive errors authenticating**
 
 ```json
 {
-"Version": "2012-10-17",
-"Statement": [
- {
-   "Effect": "Allow",
-   "Action": [
-     "ec2:DescribeInstances",
-     "iam:GetInstanceProfile",
-     "iam:GetUser",
-     "iam:ListRoles",
-     "iam:GetRole"
-   ],
-   "Resource": "*"
- }
- ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeInstances",
+                "iam:GetInstanceProfile",
+                "iam:GetUser",
+                "iam:ListRoles",
+                "iam:GetRole",
+                "iam:CreateUser",
+                "iam:PutUserPolicy"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+#### Create IAM Policy for your IAM Role
+
+You will now create the IAM policy for your IAM Role. You will need to attach this to your IAM Role to allow Vault to connect to it and authenticate. You can replace *vaultauth* with the name of the IAM Role and IAM User that you have created.
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeInstances",
+                "iam:GetInstanceProfile",
+                "iam:GetUser",
+                "iam:GetRole"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sts:AssumeRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::<aws-account-number>:role/vaultauth"
+            ]
+        },
+        {
+            "Sid": "ManageOwnAccessKeys",
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateAccessKey",
+                "iam:DeleteAccessKey",
+                "iam:GetAccessKeyLastUsed",
+                "iam:GetUser",
+                "iam:ListAccessKeys",
+                "iam:UpdateAccessKey"
+            ],
+            "Resource": "arn:aws:iam::*:user/vaultauth"
+        }
+    ]
 }
 
 
 ```
 
-### Create connection to Vault via AWS IAM User
+#### Create the connections to Vault via AWS IAM User and AWS IAM Role
 
 
 Enable aws auth on your vault instance.
@@ -71,36 +120,68 @@ vault write auth/aws/config/client secret_key=<secret-key> access_key=<access-ke
 ```
 
 
-### Create Vault role for connection to AWS IAM Role
+#### Create Vault role for connection to AWS IAM Role
 
 Configure the AWS auth method to trust the AWS IAM role previously created and attach the vault-policy-for-aws-ec2role to the token provided by the AWS auth method. Replace <iam-arn> with the actual IAM Role ARN you created in AWS.
 
 **Note: The IAM User Arn will look like the following: arn:aws:iam::\<aws-account-number\>:user/vaultauth **
 
 ```bash
-vault write auth/aws/role/vault-role-for-aws-ec2role \
+vault write auth/aws/role/vaultauth \
      auth_type=iam \
-     bound_iam_principal_arn=<iam-arn> \
-     policies=default,allinonepolicy
+     bound_iam_principal_arn=arn:aws:iam::<aws-account-number>:role/vaultauth \
+     policies=default,allinone
 ```
 
-
-```bash
-vault write auth/approle/role/vault-role-for-aws-ec2role \
-    secret_id_ttl=10m \
-    token_num_uses=0 \
-    token_ttl=20m \
-    token_max_ttl=30m \
-    secret_id_num_uses=40
-```    
-
-List the roles you created for the aws auth method
+List the roles you created for the aws auth method.
 
 ```bash
 vault list /auth/aws/role
 ```
 
+
+#### Setup authentication to Vault via an IAM Role
+
++ auth/aws/role/<name-of-vault-iam-role> - this is the name of the role you are creating in vault
++ auth_type=iam - this notes that vault will authenticate via an IAM role
++ bound_iam_principal_arn - this is the IAM Role arn that you will get from your AWS account
++ policies - these are the policy(s) you will associate with your vault role
+
 ```bash
 vault write auth/aws/role/vaultauth auth_type=iam \
               bound_iam_principal_arn=<iam-arn> policies=default,allinonepolicy max_ttl=500h
 ```              
+
+
+#### Setup authentication to Vault via an IAM Role or an ec2 Auth Method
+
+```bash
+###Vault role that will authenticate via the ec2 auth method
+vault write auth/aws/role/vaultauth auth_type=ec2 bound_ami_id=ami-fce3c696 policies=prod,dev max_ttl=500h
+```
+
+```bash
+###Create Vault role that allows an IAM role to authenticate with it
+vault write auth/aws/role/vaultauth auth_type=iam \
+              bound_iam_principal_arn=arn:aws:iam::<aws-account-number>:role/test-iam-vault-auth policies=allinone,dev max_ttl=500
+```
+
+#### Test your login from an ec2 instance
+
+```bash
+vault login -method=aws region=us-east-1 role=vaultauthentication
+```
+
+#### Test listing secrets
+
+```bash
+vault kv get -mount=secret <secret-path>
+```
+
+<center>References</center>
+
+[Vault Auth Method](https://developer.hashicorp.com/vault/tutorials/manage-hcp-vault-dedicated/vault-auth-method-aws)
+
+[IAM and ec2 Auth Methods](https://developer.hashicorp.com/vault/docs/v1.16.x/auth/aws#comparison-of-the-iam-and-ec2-methods)
+
+[Vault AWS Auth Method API](https://developer.hashicorp.com/vault/api-docs/v1.16.x/auth/aws#aws-auth-method-api)

@@ -57,6 +57,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/awscftemplates.html">AWS &amp; Vault CloudFormation Templates</a>
     <a class="dropdown-item" href="../articles/awsvault.html">AWS &amp; Vault</a>
     <a class="dropdown-item" href="../articles/azurevault.html">Azure &amp; Vault</a>
     <a class="dropdown-item" href="../articles/github.html">GitHub &amp; Vault</a>
@@ -98,73 +99,162 @@ Gonzalez</h4>
 
     
     
-<div class="section level3">
-<h3 id="creates-aws-resources">Creates AWS Resources<a class="anchor" aria-label="anchor" href="#creates-aws-resources"></a>
-</h3>
+<div class="section level4">
+<h4 id="creates-aws-resources">Creates AWS Resources<a class="anchor" aria-label="anchor" href="#creates-aws-resources"></a>
+</h4>
 <p>Before you configure the HCP Vault AWS auth method, you must create
 the necessary resources in AWS. The AWS auth method will require an IAM
 policy that permits the appropriate access for the auth method, an IAM
 user with programmatic access, and one or more roles that you will
 assign to other AWS services that require authentication to Vault.</p>
 </div>
-<div class="section level3">
-<h3 id="create-iam-policy">Create IAM Policy<a class="anchor" aria-label="anchor" href="#create-iam-policy"></a>
-</h3>
-<p>You will now create the IAM policy for your IAM User</p>
+<div class="section level4">
+<h4 id="create-the-iam-policy-for-your-iam-user">Create the IAM Policy for your IAM User<a class="anchor" aria-label="anchor" href="#create-the-iam-policy-for-your-iam-user"></a>
+</h4>
+<p>The below policy needs to be attached to the IAM User you are
+creating in AWS.</p>
+<p><strong>Note: You may need to add more IAM permissions if you receive
+errors authenticating</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"2012-10-17"</span><span class="fu">,</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="dt">"Statement"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a> <span class="fu">{</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>   <span class="dt">"Effect"</span><span class="fu">:</span> <span class="st">"Allow"</span><span class="fu">,</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>   <span class="dt">"Action"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>     <span class="st">"ec2:DescribeInstances"</span><span class="ot">,</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>     <span class="st">"iam:GetInstanceProfile"</span><span class="ot">,</span></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>     <span class="st">"iam:GetUser"</span><span class="ot">,</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>     <span class="st">"iam:ListRoles"</span><span class="ot">,</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>     <span class="st">"iam:GetRole"</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>   <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>   <span class="dt">"Resource"</span><span class="fu">:</span> <span class="st">"*"</span></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a> <span class="fu">}</span></span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a> <span class="ot">]</span></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="fu">}</span></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a></span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>    <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"2012-10-17"</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    <span class="dt">"Statement"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>            <span class="dt">"Effect"</span><span class="fu">:</span> <span class="st">"Allow"</span><span class="fu">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>            <span class="dt">"Action"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>                <span class="st">"ec2:DescribeInstances"</span><span class="ot">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>                <span class="st">"iam:GetInstanceProfile"</span><span class="ot">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>                <span class="st">"iam:GetUser"</span><span class="ot">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>                <span class="st">"iam:ListRoles"</span><span class="ot">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>                <span class="st">"iam:GetRole"</span><span class="ot">,</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>                <span class="st">"iam:CreateUser"</span><span class="ot">,</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>                <span class="st">"iam:PutUserPolicy"</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>            <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>            <span class="dt">"Resource"</span><span class="fu">:</span> <span class="st">"*"</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="create-connection-to-vault-via-aws-iam-user">Create connection to Vault via AWS IAM User<a class="anchor" aria-label="anchor" href="#create-connection-to-vault-via-aws-iam-user"></a>
-</h3>
+<div class="section level4">
+<h4 id="create-iam-policy-for-your-iam-role">Create IAM Policy for your IAM Role<a class="anchor" aria-label="anchor" href="#create-iam-policy-for-your-iam-role"></a>
+</h4>
+<p>You will now create the IAM policy for your IAM Role. You will need
+to attach this to your IAM Role to allow Vault to connect to it and
+authenticate. You can replace <em>vaultauth</em> with the name of the
+IAM Role and IAM User that you have created.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>    <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"2012-10-17"</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    <span class="dt">"Statement"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>            <span class="dt">"Effect"</span><span class="fu">:</span> <span class="st">"Allow"</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>            <span class="dt">"Action"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>                <span class="st">"ec2:DescribeInstances"</span><span class="ot">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>                <span class="st">"iam:GetInstanceProfile"</span><span class="ot">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>                <span class="st">"iam:GetUser"</span><span class="ot">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>                <span class="st">"iam:GetRole"</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>            <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>            <span class="dt">"Resource"</span><span class="fu">:</span> <span class="st">"*"</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>        <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>            <span class="dt">"Effect"</span><span class="fu">:</span> <span class="st">"Allow"</span><span class="fu">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>            <span class="dt">"Action"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>                <span class="st">"sts:AssumeRole"</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>            <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>            <span class="dt">"Resource"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>                <span class="st">"arn:aws:iam::&lt;aws-account-number&gt;:role/vaultauth"</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>            <span class="ot">]</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>        <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>            <span class="dt">"Sid"</span><span class="fu">:</span> <span class="st">"ManageOwnAccessKeys"</span><span class="fu">,</span></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>            <span class="dt">"Effect"</span><span class="fu">:</span> <span class="st">"Allow"</span><span class="fu">,</span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a>            <span class="dt">"Action"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a>                <span class="st">"iam:CreateAccessKey"</span><span class="ot">,</span></span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a>                <span class="st">"iam:DeleteAccessKey"</span><span class="ot">,</span></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>                <span class="st">"iam:GetAccessKeyLastUsed"</span><span class="ot">,</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a>                <span class="st">"iam:GetUser"</span><span class="ot">,</span></span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a>                <span class="st">"iam:ListAccessKeys"</span><span class="ot">,</span></span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a>                <span class="st">"iam:UpdateAccessKey"</span></span>
+<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a>            <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a>            <span class="dt">"Resource"</span><span class="fu">:</span> <span class="st">"arn:aws:iam::*:user/vaultauth"</span></span>
+<span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb2-36"><a href="#cb2-36" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb2-37"><a href="#cb2-37" tabindex="-1"></a><span class="fu">}</span></span>
+<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="create-the-connections-to-vault-via-aws-iam-user-and-aws-iam-role">Create the connections to Vault via AWS IAM User and AWS IAM
+Role<a class="anchor" aria-label="anchor" href="#create-the-connections-to-vault-via-aws-iam-user-and-aws-iam-role"></a>
+</h4>
 <p>Enable aws auth on your vault instance.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">vault</span> auth enable aws</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">vault</span> auth enable aws</span></code></pre></div>
 <p>Check to see if the vault auth aws method has been enabled.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">vault</span> auth list</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">vault</span> auth list</span></code></pre></div>
 <p>Next connect the IAM role you created in AWS to the Vault aws auth
 backend. This will configure the AWS auth method with access to your AWS
 account using the Access key ID and Secret Access Key previously created
 for the IAM User you created in AWS.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">vault</span> write auth/aws/config/client secret_key=<span class="op">&lt;</span>secret-key<span class="op">&gt;</span> access_key=<span class="op">&lt;</span>access-key<span class="op">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">vault</span> write auth/aws/config/client secret_key=<span class="op">&lt;</span>secret-key<span class="op">&gt;</span> access_key=<span class="op">&lt;</span>access-key<span class="op">&gt;</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="create-vault-role-for-connection-to-aws-iam-role">Create Vault role for connection to AWS IAM Role<a class="anchor" aria-label="anchor" href="#create-vault-role-for-connection-to-aws-iam-role"></a>
-</h3>
+<div class="section level4">
+<h4 id="create-vault-role-for-connection-to-aws-iam-role">Create Vault role for connection to AWS IAM Role<a class="anchor" aria-label="anchor" href="#create-vault-role-for-connection-to-aws-iam-role"></a>
+</h4>
 <p>Configure the AWS auth method to trust the AWS IAM role previously
 created and attach the vault-policy-for-aws-ec2role to the token
 provided by the AWS auth method. Replace <iam-arn> with the actual IAM
 Role ARN you created in AWS.</iam-arn></p>
 <p><strong>Note: The IAM User Arn will look like the following:
 arn:aws:iam::&lt;aws-account-number&gt;:user/vaultauth </strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">vault</span> write auth/aws/role/vault-role-for-aws-ec2role <span class="dt">\</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>     auth_type=iam <span class="dt">\</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>     bound_iam_principal_arn=<span class="op">&lt;</span>iam-arn<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>     policies=default,allinonepolicy</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">vault</span> write auth/approle/role/vault-role-for-aws-ec2role <span class="dt">\</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>    secret_id_ttl=10m <span class="dt">\</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    token_num_uses=0 <span class="dt">\</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    token_ttl=20m <span class="dt">\</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    token_max_ttl=30m <span class="dt">\</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    secret_id_num_uses=40</span></code></pre></div>
-<p>List the roles you creates for the aws auth method</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">vault</span> write auth/aws/role/vaultauth <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>     auth_type=iam <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>     bound_iam_principal_arn=arn:aws:iam::<span class="op">&lt;</span>aws-account-number<span class="op">&gt;</span>:role/vaultauth <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>     policies=default,allinone</span></code></pre></div>
+<p>List the roles you created for the aws auth method.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">vault</span> list /auth/aws/role</span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="setup-authentication-to-vault-via-an-iam-role">Setup authentication to Vault via an IAM Role<a class="anchor" aria-label="anchor" href="#setup-authentication-to-vault-via-an-iam-role"></a>
+</h4>
+<ul>
+<li>auth/aws/role/<name-of-vault-iam-role> - this is the name of the
+role you are creating in vault</name-of-vault-iam-role>
+</li>
+<li>auth_type=iam - this notes that vault will authenticate via an IAM
+role</li>
+<li>bound_iam_principal_arn - this is the IAM Role arn that you will get
+from your AWS account</li>
+<li>policies - these are the policy(s) you will associate with your
+vault role</li>
+</ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">vault</span> write auth/aws/role/vaultauth auth_type=iam <span class="dt">\</span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>              bound_iam_principal_arn=<span class="op">&lt;</span>iam-arn<span class="op">&gt;</span> policies=default,allinonepolicy max_ttl=500h</span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="setup-authentication-to-vault-via-an-iam-role-or-an-ec2-auth-method">Setup authentication to Vault via an IAM Role or an ec2 Auth
+Method<a class="anchor" aria-label="anchor" href="#setup-authentication-to-vault-via-an-iam-role-or-an-ec2-auth-method"></a>
+</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co">###Vault role that will authenticate via the ec2 auth method</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">vault</span> write auth/aws/role/vaultauth auth_type=ec2 bound_ami_id=ami-fce3c696 policies=prod,dev max_ttl=500h</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co">###Create Vault role that allows an IAM role to authenticate with it</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">vault</span> write auth/aws/role/vaultauth auth_type=iam <span class="dt">\</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>              bound_iam_principal_arn=arn:aws:iam::<span class="op">&lt;</span>aws-account-number<span class="op">&gt;</span>:role/test-iam-vault-auth policies=allinone,dev max_ttl=500</span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="test-your-login-from-an-ec2-instance">Test your login from an ec2 instance<a class="anchor" aria-label="anchor" href="#test-your-login-from-an-ec2-instance"></a>
+</h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">vault</span> login <span class="at">-method</span><span class="op">=</span>aws region=us-east-1 role=vaultauthentication</span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="test-listing-secrets">Test listing secrets<a class="anchor" aria-label="anchor" href="#test-listing-secrets"></a>
+</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">vault</span> kv get <span class="at">-mount</span><span class="op">=</span>secret <span class="op">&lt;</span>secret-path<span class="op">&gt;</span></span></code></pre></div>
+<center>
+References
+</center>
+<p><a href="https://developer.hashicorp.com/vault/tutorials/manage-hcp-vault-dedicated/vault-auth-method-aws" class="external-link">Vault
+Auth Method</a></p>
+<p><a href="https://developer.hashicorp.com/vault/docs/v1.16.x/auth/aws#comparison-of-the-iam-and-ec2-methods" class="external-link">IAM
+and ec2 Auth Methods</a></p>
+<p><a href="https://developer.hashicorp.com/vault/api-docs/v1.16.x/auth/aws#aws-auth-method-api" class="external-link">Vault
+AWS Auth Method API</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
