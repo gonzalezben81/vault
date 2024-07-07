@@ -18,7 +18,7 @@ Return's the user token that allows an individual to query secrets in Vault.
 get_github_token: Gets a token from Vault utilizing your github login credentials.
 }
 \details{
-This function obtains the token for the github user from Vault. The user can then utilize the token retrieved to query secrets from Vault. 
+This function obtains the token for the github user from Vault. The user can then utilize the token retrieved to query secrets from Vault.
 You will need the url of the HashiCorp Vault you are using and your PAT from github. You should have already created an organization in github
 to utilize this login path in Vault.
 }

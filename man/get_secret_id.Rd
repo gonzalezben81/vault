@@ -20,7 +20,7 @@ Return's the secret id that allows an individual to query secrets in Vault via t
 Vault: Gets the secret id for the approle registered in vault e.g.(jenkins).
 }
 \details{
-This function obtains the secret id for the approle from Vault. The user can then utilize the secret id retrieved to obtain the approle token from Vault. 
+This function obtains the secret id for the approle from Vault. The user can then utilize the secret id retrieved to obtain the approle token from Vault.
 You will need the URL of the HashiCorp Vault you are using the role name in vault and a token from an auth path in Vault.
 }
 \examples{

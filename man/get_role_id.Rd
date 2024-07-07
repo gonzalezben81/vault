@@ -20,7 +20,7 @@ Return's the user/github/etc... token that allows an individual to query secrets
 Vault: Gets the Approle ID from Vault.
 }
 \details{
-This function obtains the approle ID from Vault. The user can then utilize the approle ID retrieved to query secrets from Vault via the approle method. 
+This function obtains the approle ID from Vault. The user can then utilize the approle ID retrieved to query secrets from Vault via the approle method.
 You will need the URL of the HashiCorp Vault you are using and your user/github/etc... token to retrieve the approle id.
 }
 \examples{

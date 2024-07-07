@@ -180,7 +180,7 @@ vault kv get -mount=secret <secret-path>
 
 <center>References</center>
 
-[Vault Auth Method](https://developer.hashicorp.com/vault/tutorials/manage-hcp-vault-dedicated/vault-auth-method-aws)
+[Vault Auth Method](https://developer.hashicorp.com/vault/docs/v1.16.x/auth/aws#authentication)
 
 [IAM and ec2 Auth Methods](https://developer.hashicorp.com/vault/docs/v1.16.x/auth/aws#comparison-of-the-iam-and-ec2-methods)
 

@@ -28,7 +28,7 @@ Writes the AWS Access Key ID, AWS Secret Access Key, Region used by the register
 }
 \description{
 Vault: Registers the AWS User credentials in Vault. Note: Please do not
-register the ROOT User tokens from your AWS instance. 
+register the ROOT User tokens from your AWS instance.
 
 This function registers the AWS User credentials in Vault used to get the
 Access Key ID and Secret Access Key for Users and roles in AWS.

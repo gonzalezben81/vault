@@ -62,6 +62,9 @@ Outputs:
 
 #### Vault AWS IAM Role
 
+Below is an AWS cloud formation template that will create an IAM Role for interacting with Vault.
+
+
 ```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Parameters:

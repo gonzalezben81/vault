@@ -28,6 +28,12 @@
     <loc>https://gonzalezben81.github.io/vault/index.html</loc>
   </url>
   <url>
+    <loc>https://gonzalezben81.github.io/vault/reference/aws_create_iam_role.html</loc>
+  </url>
+  <url>
+    <loc>https://gonzalezben81.github.io/vault/reference/aws_list_roles.html</loc>
+  </url>
+  <url>
     <loc>https://gonzalezben81.github.io/vault/reference/aws_rotate_root_creds.html</loc>
   </url>
   <url>

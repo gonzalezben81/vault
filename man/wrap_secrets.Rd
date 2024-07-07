@@ -32,7 +32,7 @@ This function wraps secrets via the wrap endpoint in Vault. The function returns
 
 }
 \references{
-[Vault Wrap Token API]\url{https://developer.HashiCorp.com/vault/api-docs/system/wrapping-wrap}
-[Vault Wrapping Overview]\url{https://developer.HashiCorp.com/vault/docs/concepts/response-wrapping}
+\link{Vault Wrap Token API}\url{https://developer.HashiCorp.com/vault/api-docs/system/wrapping-wrap}
+\link{Vault Wrapping Overview}\url{https://developer.HashiCorp.com/vault/docs/concepts/response-wrapping}
 }
 \keyword{get_approle_token}
