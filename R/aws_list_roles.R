@@ -26,10 +26,10 @@
 #' @import jsonlite
 #' @examples
 #'
-#' ```r
+#' \dontrun{
 #' aws_list_roles(url="vault-url.com",token=token)
 #'
-#' ```
+#' }
 #'
 #' @export
 
