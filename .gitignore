@@ -13,3 +13,4 @@ consul.service
 approle-admin-levelpolicy.json
 allinonepolicy.json
 wrapsecretspolicy.json
+payload.json
