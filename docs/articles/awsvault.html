@@ -91,7 +91,7 @@
                         <h4 data-toc-skip class="author">Ben
 Gonzalez</h4>
             
-            <h4 data-toc-skip class="date">2024-07-07</h4>
+            <h4 data-toc-skip class="date">2024-07-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/gonzalezben81/vault/blob/HEAD/vignettes/awsvault.Rmd" class="external-link"><code>vignettes/awsvault.Rmd</code></a></small>
       <div class="d-none name"><code>awsvault.Rmd</code></div>
@@ -113,6 +113,8 @@ assign to other AWS services that require authentication to Vault.</p>
 </h4>
 <p>The below policy needs to be attached to the IAM User you are
 creating in AWS.</p>
+<p><a href="./awscftemplates.html#vault-aws-iam-user">IAM User Cloud
+Formation Template</a></p>
 <p><strong>Note: You may need to add more IAM permissions if you receive
 errors authenticating</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">{</span></span>
@@ -137,6 +139,8 @@ errors authenticating</strong></p>
 <div class="section level4">
 <h4 id="create-iam-policy-for-your-iam-role">Create IAM Policy for your IAM Role<a class="anchor" aria-label="anchor" href="#create-iam-policy-for-your-iam-role"></a>
 </h4>
+<p><a href="./awscftemplates.html#vault-aws-iam-role">IAM Role Cloud
+Formation Template</a></p>
 <p>You will now create the IAM policy for your IAM Role. You will need
 to attach this to your IAM Role to allow Vault to connect to it and
 authenticate. You can replace <em>vaultauth</em> with the name of the

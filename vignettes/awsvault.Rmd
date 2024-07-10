@@ -26,6 +26,8 @@ Before you configure the HCP Vault AWS auth method, you must create the necessar
 
 The below policy needs to be attached to the IAM User you are creating in AWS.
 
+[IAM User Cloud Formation Template](./awscftemplates.html#vault-aws-iam-user)
+
 
 **Note: You may need to add more IAM permissions if you receive errors authenticating**
 
@@ -51,6 +53,8 @@ The below policy needs to be attached to the IAM User you are creating in AWS.
 ```
 
 #### Create IAM Policy for your IAM Role
+
+[IAM Role Cloud Formation Template](./awscftemplates.html#vault-aws-iam-role)
 
 You will now create the IAM policy for your IAM Role. You will need to attach this to your IAM Role to allow Vault to connect to it and authenticate. You can replace *vaultauth* with the name of the IAM Role and IAM User that you have created.
 
