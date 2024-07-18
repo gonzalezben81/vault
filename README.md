@@ -1,7 +1,7 @@
 # vault <a href="https://gonzalezben81.github.io/vault/"><img src="man/figures/logo.png" align="right" height="82" alt="vault website" /></a>
 <!-- badges: start -->
 
-[![License](https://img.shields.io/badge/License-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3)
+[![License](https://img.shields.io/badge/License-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![R-CMD-check](https://github.com/gonzalezben81/vault/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gonzalezben81/vault/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
