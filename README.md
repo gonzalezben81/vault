@@ -4,6 +4,8 @@
 [![License](https://img.shields.io/badge/License-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![R-CMD-check](https://github.com/gonzalezben81/vault/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gonzalezben81/vault/actions/workflows/R-CMD-check.yaml)
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/gonzalezben81/vault/total)
+![GitHub Release](https://img.shields.io/github/v/release/gonzalezben81/vault)
+
 <!-- badges: end -->
 
 ## vault
