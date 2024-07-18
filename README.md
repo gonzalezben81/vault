@@ -5,7 +5,7 @@
 [![R-CMD-check](https://github.com/gonzalezben81/vault/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gonzalezben81/vault/actions/workflows/R-CMD-check.yaml)
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/gonzalezben81/vault/total)
 ![GitHub Release](https://img.shields.io/github/v/release/gonzalezben81/vault)
-
+![GitHub R package version](https://img.shields.io/github/r-package/v/gonzalezben81/vault)
 <!-- badges: end -->
 
 ## vault
